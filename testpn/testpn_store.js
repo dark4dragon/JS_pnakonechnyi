@@ -1,5 +1,3 @@
-const auth = require("../pages/auth");
-const { myAccountPage } = require("../pages/myAccount");
 
 let user = {
     firstName: 'Pavlo',
@@ -26,5 +24,4 @@ Scenario('test something', ({ I, homepagePage, authPage, createAccountPage, myAc
     authPage.clickCreateAccount();
     createAccountPage.fillNewAccuontFields(user);
     myAccountPage.verifyPage();
-    pause();
 })
