@@ -25,6 +25,7 @@ exports.config = {
     homepagePage: './pages/homepage.js',
     authPage: './pages/auth.js',
     createAccountPage: './pages/createAccount.js',
+    myAccountPage: './pages/myAccount.js',
   },
   name: 'JS_pnakonechnyi'
 }
