@@ -1,22 +1,22 @@
 const { I } = inject();
 
 module.exports = {
-  firstNameInput: {css: "#customer_firstname"},
-  lastNameInput: {css: "#customer_lastname"},
-  passwordInput: {css: "#passwd"},
-  addressFirstNameInput: {css: "#firstname"},
-  addressLastNameInput: {css: "#lastname"},
-  copmanyInput: {css: "#company"},
-  addresLineInput: {css: "#address1"},
-  cityInput: {css: "#city"},
-  stateDropDown: { css: "#id_state"},
-  zipCodeInput: {css: "#postcode"},
-  additionalInfoInput: {css: "#other"},
-  mobilePhoneInput: {css: "#phone_mobile"},
-  aliasAddressInput: {css: "#alias"},
-  registerButtonClick: {css: "#submitAccount"},
+  firstNameInput: { css: "#customer_firstname" },
+  lastNameInput: { css: "#customer_lastname" },
+  passwordInput: { css: "#passwd" },
+  addressFirstNameInput: { css: "#firstname" },
+  addressLastNameInput: { css: "#lastname" },
+  copmanyInput: { css: "#company" },
+  addresLineInput: { css: "#address1" },
+  cityInput: { css: "#city" },
+  stateDropDown: { css: "#id_state" },
+  zipCodeInput: { css: "#postcode" },
+  additionalInfoInput: { css: "#other" },
+  mobilePhoneInput: { css: "#phone_mobile" },
+  aliasAddressInput: { css: "#alias" },
+  registerButtonClick: { css: "#submitAccount" },
 
-  fillNewAccuontFields(user) {
+  newUserRegistration(user) {
     I.waitForVisible(this.firstNameInput);
     I.fillField(this.firstNameInput, user.firstName);
     I.fillField(this.lastNameInput, user.lastName);
@@ -35,5 +35,5 @@ module.exports = {
     I.click(this.registerButtonClick);
 
   }
-  // insert your locators and methods here
+
 }

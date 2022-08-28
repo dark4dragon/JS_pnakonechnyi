@@ -22,6 +22,6 @@ Scenario('test something', ({ I, homepagePage, authPage, createAccountPage, myAc
     homepagePage.clickSingIn();
     authPage.fillEmail(Date.now() + '@test.com');
     authPage.clickCreateAccount();
-    createAccountPage.fillNewAccuontFields(user);
+    createAccountPage.newUserRegistration(user);
     myAccountPage.verifyPage();
 })

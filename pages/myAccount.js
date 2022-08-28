@@ -1,10 +1,11 @@
 const { I } = inject();
 
 module.exports = {
-  myAccountPage: ('My account'),
+  myAccountPage: 'My account',
 
-    verifyPage () {
+  verifyPage() {
+    I.waitForText(this.myAccountPage);
     I.see(this.myAccountPage);
   }
-  // insert your locators and methods here
+
 }
