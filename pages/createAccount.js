@@ -16,7 +16,7 @@ module.exports = {
   aliasAddressInput: { css: "#alias" },
   registerButtonClick: { css: "#submitAccount" },
 
-  newUserRegistration(user) {
+  registerNewUser(user) {
     I.waitForVisible(this.firstNameInput);
     I.fillField(this.firstNameInput, user.firstName);
     I.fillField(this.lastNameInput, user.lastName);
