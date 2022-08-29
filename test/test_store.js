@@ -2,7 +2,7 @@
 let user = {
     firstName: 'Pavlo',
     lastName: 'Nakonechnyi',
-    password: 'Test1234%',
+    passwordRegister: 'Test1234%',
     addressFirstName: 'Pavlo',
     addressLastName: 'Nakonechnyi',
     company: 'GFL',
@@ -17,11 +17,20 @@ let user = {
 
 Feature('store');
 
-Scenario('test something', ({ I, homepagePage, authPage, createAccountPage, myAccountPage }) => {
+Before(({ I }) => {
     I.openStore();
+});
+
+xScenario('registration', ({ I, homepagePage, authPage, createAccountPage, myAccountPage }) => {
     homepagePage.clickSingIn();
-    authPage.fillEmail(Date.now() + '@test.com');
+    authPage.fillRegistrationEmail(Date.now() + '@test.com');
     authPage.clickCreateAccount();
     createAccountPage.registerNewUser(user);
     myAccountPage.verifyPage();
-})
+}).tag('reg');
+
+Scenario('buy product', ({ I, homepagePage, authPage }) => {
+    homepagePage.clickSingIn();
+    authPage.login('test12345@test.ua', 'Test1234%');
+    pause();
+}).tag('buy');

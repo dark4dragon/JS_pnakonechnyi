@@ -20,7 +20,7 @@ module.exports = {
     I.waitForVisible(this.firstNameInput);
     I.fillField(this.firstNameInput, user.firstName);
     I.fillField(this.lastNameInput, user.lastName);
-    I.fillField(this.passwordInput, user.password);
+    I.fillField(this.passwordInput, user.passwordRegister);
     I.fillField(this.addressFirstNameInput, user.addressFirstName);
     I.fillField(this.addressLastNameInput, user.addressLastName);
     I.fillField(this.copmanyInput, user.company);
