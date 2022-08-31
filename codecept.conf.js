@@ -15,17 +15,23 @@ exports.config = {
       url: 'http://localhost',
       show: true,
       browser: 'chromium',
-      timeout: 20000,
-      waitForTimeout: 10000,
+      timeout: 30000,
+      waitForTimeout: 20000,
       waitForNavigation: 'networkidle',
+      windowSize: '1400x700',
+    },
+    ChaiWrapper: {
+      require: "codeceptjs-chai",
     }
   },
   include: {
     I: './steps_file.js',
-    homepagePage: './pages/homepage.js',
+    homePage: './pages/home.js',
     authPage: './pages/auth.js',
     createAccountPage: './pages/createAccount.js',
     myAccountPage: './pages/myAccount.js',
+    productPage: './pages/product.js',
+    cartPage: './pages/cart.js',
   },
   name: 'JS_pnakonechnyi'
 }

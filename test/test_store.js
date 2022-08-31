@@ -1,4 +1,3 @@
-
 let user = {
     firstName: 'Pavlo',
     lastName: 'Nakonechnyi',
@@ -21,16 +20,28 @@ Before(({ I }) => {
     I.openStore();
 });
 
-xScenario('registration', ({ I, homepagePage, authPage, createAccountPage, myAccountPage }) => {
-    homepagePage.clickSingIn();
+xScenario('registration', ({ I, homePage, authPage, createAccountPage, myAccountPage }) => {
+    homePage.clickSingIn();
     authPage.fillRegistrationEmail(Date.now() + '@test.com');
     authPage.clickCreateAccount();
     createAccountPage.registerNewUser(user);
     myAccountPage.verifyPage();
 }).tag('reg');
 
-Scenario('buy product', ({ I, homepagePage, authPage }) => {
-    homepagePage.clickSingIn();
+Scenario('buy product', async ({ I, homePage, authPage, myAccountPage, productPage, cartPage }) => {
+    homePage.clickSingIn();
     authPage.login('test12345@test.ua', 'Test1234%');
-    pause();
+    myAccountPage.verifyPage();
+    I.openProductPage();
+    let productPrice = await productPage.getProductPrice();
+    console.log(+productPrice.slice(1) + 3.30);
+    productPage.addToCart();
+    let totalPrice = await cartPage.getTotalPrice();
+    console.log(+totalPrice.slice(1));
+    I.assertEqual(+productPrice.slice(1) + 3.30, +totalPrice.slice(1));
+    cartPage.proceedingCheckout();
+    let referenceCode = await cartPage.getReferenceCode();
+    console.log(String(referenceCode));
+    let stringCode = referenceCode.toString();    
+    console.log(stringCode[216]);
 }).tag('buy');
