@@ -6,7 +6,10 @@ module.exports = {
   
 
   addToCart() {
-    I.click(this.addToCartButton);
+    I.click(this.addToCartButton);    
+  },
+
+  proceedToCheckOut() {
     I.click(this.proceedToCheckoutButton);
   }
 

@@ -34,12 +34,13 @@ Scenario('buy product', async ({ I, homePage, authPage, myAccountPage, productPa
     myAccountPage.verifyPage();
     I.amOnPage('http://automationpractice.com/index.php?id_product=6&controller=product');
     productPage.addToCart();
+    productPage.proceedToCheckOut();
     let productPrice = await cartPage.getProductPrice();    
     let shippingPrice = await cartPage.getShippingPrice();
     let taxPrice = await cartPage.getTaxPrice();
     let totalPrice = await cartPage.getTotalPrice();
-    I.assertEqual((productPrice + shippingPrice + taxPrice), totalPrice);
-    cartPage.proceedingCheckout();
+    I.assertEqual((productPrice + shippingPrice + taxPrice), totalPrice, 'Prices are not in match');
+    cartPage.completePurchase();
     let referenceCode = await cartPage.getReferenceCode();
     console.log(referenceCode);
 }).tag('buy');

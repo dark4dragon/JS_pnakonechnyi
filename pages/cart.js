@@ -42,7 +42,7 @@ module.exports = {
 
   },
 
-  proceedingCheckout() {
+  completePurchase() {
     I.waitForVisible(this.processSummary);
     I.click(this.processSummary);
     I.waitForVisible(this.processAddress);
