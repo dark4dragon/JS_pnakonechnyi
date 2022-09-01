@@ -20,7 +20,7 @@ Before(({ I }) => {
     I.openStore();
 });
 
-xScenario('registration', ({ I, homePage, authPage, createAccountPage, myAccountPage }) => {
+Scenario('registration', ({ I, homePage, authPage, createAccountPage, myAccountPage }) => {
     homePage.clickSingIn();
     authPage.fillRegistrationEmail(Date.now() + '@test.com');
     authPage.clickCreateAccount();
@@ -32,16 +32,14 @@ Scenario('buy product', async ({ I, homePage, authPage, myAccountPage, productPa
     homePage.clickSingIn();
     authPage.login('test12345@test.ua', 'Test1234%');
     myAccountPage.verifyPage();
-    I.openProductPage();
-    let productPrice = await productPage.getProductPrice();
-    console.log(+productPrice.slice(1) + 3.30);
+    I.amOnPage('http://automationpractice.com/index.php?id_product=6&controller=product');
     productPage.addToCart();
+    let productPrice = await cartPage.getProductPrice();    
+    let shippingPrice = await cartPage.getShippingPrice();
+    let taxPrice = await cartPage.getTaxPrice();
     let totalPrice = await cartPage.getTotalPrice();
-    console.log(+totalPrice.slice(1));
-    I.assertEqual(+productPrice.slice(1) + 3.30, +totalPrice.slice(1));
+    I.assertEqual((productPrice + shippingPrice + taxPrice), totalPrice);
     cartPage.proceedingCheckout();
     let referenceCode = await cartPage.getReferenceCode();
-    console.log(String(referenceCode));
-    let stringCode = referenceCode.toString();    
-    console.log(stringCode[216]);
+    console.log(referenceCode);
 }).tag('buy');

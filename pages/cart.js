@@ -10,10 +10,36 @@ module.exports = {
   orderConfirmation: { css: "#center_column" },
   totalPrice: { css: "#total_price" },
   orderComplete: { xpath: '//div[@class="box"]' },
+  shippingPrice: { css: "#total_shipping" },
+  taxPrice: { css: "#total_tax" },
+  productPrice: { css: "#total_product" },
 
+  async getProductPrice() {
+    let productPrice = await I.grabTextFrom(this.productPrice)
+    let stringProductPrice = productPrice.slice(1);
+    return Number(stringProductPrice);
+
+  },
+
+  async getShippingPrice() {
+    let shippingPrice = await I.grabTextFrom(this.shippingPrice)
+    let stringShippingPrice = shippingPrice.slice(1);
+    return Number(stringShippingPrice);
+
+  },
+
+  async getTaxPrice() {
+    let taxPrice = await I.grabTextFrom(this.taxPrice)
+    let stringTaxPrice = taxPrice.slice(1);
+    return Number(stringTaxPrice);
+
+  },
 
   async getTotalPrice() {
-    return pin = await I.grabTextFrom(this.totalPrice);
+    let totalPrice = await I.grabTextFrom(this.totalPrice)
+    let stringTotalPrice = totalPrice.slice(1);
+    return Number(stringTotalPrice);
+
   },
 
   proceedingCheckout() {
@@ -31,10 +57,13 @@ module.exports = {
     I.waitForVisible(this.orderConfirmation);
   },
 
-  async getReferenceCode() {
-    return pin = await I.grabTextFromAll(this.orderComplete);
-  },
 
-  
+  async getReferenceCode() {
+    let orderReference = await I.grabTextFromAll(this.orderComplete);
+    let orderReferenceString = orderReference.join();
+    let referenceCodeSearch = orderReferenceString.search("reference");
+    let referenceCode = orderReferenceString.slice(referenceCodeSearch + 10, referenceCodeSearch +20);
+    return referenceCode;
+  },
 
 }
